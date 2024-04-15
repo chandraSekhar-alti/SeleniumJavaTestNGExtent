@@ -13,4 +13,12 @@ public class AboutTabTests extends BaseTest {
 
         Assert.assertTrue(aboutTab.navigatingToAboutPage(), "Pop-up is not visible");
     }
+
+    @Test
+    public void testAboutTabValidationPart2() throws InterruptedException {
+        AboutTab aboutTab = new AboutTab(driver);
+
+        Assert.assertTrue(aboutTab.navigatingToAboutPage(), "Pop-up is not visible");
+    }
+
 }

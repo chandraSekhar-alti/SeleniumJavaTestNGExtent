@@ -1,6 +1,6 @@
 package Pages.ProfilePage;
 
-import Utils.TimeOuts;
+import Utils.UI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +22,7 @@ public class AboutTab {
 
         driver.findElement(profileDropDown).click();
         driver.findElement(aboutDropDownText).click();
-        TimeOuts.waitForElement(aboutTab);
+        UI.waitForElement(aboutTab);
 
         WebElement aboutTabVisibility = driver.findElement(aboutTab);
         if (aboutTabVisibility.isDisplayed()) {
