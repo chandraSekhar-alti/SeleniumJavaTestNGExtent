@@ -240,20 +240,12 @@ public class UI {
     /**
      * Puts the current thread to sleep for the specified number of seconds.
      *
-     * @param time The number of seconds to sleep.
-     * @param timeUnit specific time units either in seconds or milliseconds
+     * @param time     The number of milliseconds to sleep.
      */
-    public static void sleep(long time, TimeUnit timeUnit) {
+    public static void sleep(long time) {
         try {
-            if (timeUnit == TimeUnit.SECONDS) {
+            Thread.sleep(time);
 
-                Thread.sleep(time * 1000);
-            } else if (timeUnit == TimeUnit.MILLISECONDS) {
-
-                Thread.sleep(time);
-            } else {
-                throw new IllegalArgumentException("Invalid TimeUnit. Use SECONDS or MILLISECONDS.");
-            }
         } catch (InterruptedException e) {
             System.out.println("Sleep was interrupted: " + e.getMessage());
             Thread.currentThread().interrupt();

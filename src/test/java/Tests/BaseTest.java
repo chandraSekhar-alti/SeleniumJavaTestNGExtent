@@ -31,8 +31,8 @@ public class BaseTest {
         test = extent.createTest(this.getClass().getSimpleName() + "." + testName);
 
         // Set up WebDriver and open the browser
-        WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
 
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
@@ -56,11 +56,13 @@ public class BaseTest {
             driver.quit();
         }
     }
+
     @AfterSuite
     public void tearDownReports() {
         // Write and close the report
         extent.flush();
     }
+
     @AfterTest
     public void closeExtent() {
         // Flush and close the ExtentReports instance
@@ -71,8 +73,9 @@ public class BaseTest {
 
     public static void loginUser() {
         // Perform login steps
-        driver.findElement(By.xpath("//input[@name='username']")).sendKeys("Admin");
-        driver.findElement(By.xpath("//input[@type='password']")).sendKeys("admin123");
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
+        UI.sendText(By.xpath("//input[@name='username']"), "Admin");
+        UI.sendText(By.xpath("//input[@type='password']"), "admin123");
+        UI.clickElement(By.xpath("//button[@type='submit']"));
+
     }
 }
