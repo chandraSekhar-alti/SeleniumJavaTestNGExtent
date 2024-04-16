@@ -1,0 +1,12 @@
+<suite name="My Test Suite">
+    <listeners>
+        <listener class-name="Reports.AllureTestListeners"/>
+    </listeners>
+    <!-- Add your test groups, classes, etc. here -->
+    <test name="RegressionTests">
+        <classes>
+            <class name="Tests.ProfilePageTests.AboutTabTests" />
+            <class name="Tests.HomePageTests.HomePageLeftPanelTest" />
+        </classes>
+    </test>
+</suite>

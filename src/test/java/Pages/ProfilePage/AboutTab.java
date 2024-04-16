@@ -5,68 +5,57 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.lang.reflect.Array;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class AboutTab {
-    public WebDriver driver;
+    private final WebDriver driver;
+
+    private final By userDropdown = By.cssSelector("span[class='oxd-userdropdown-tab']");
+    private final By aboutMenuOption = By.xpath("//ul[@role='menu']/li/a[text()='About']");
+    private final By aboutPopup = By.cssSelector("div[role='document']");
+    private final By aboutPopupHeader = By.cssSelector("div[class='orangehrm-modal-header'] > h6");
+    private final By aboutPopupContent = By.cssSelector("div[class='oxd-grid-item oxd-grid-item--gutters'] > p");
 
     public AboutTab(WebDriver driver) {
         this.driver = driver;
     }
 
-    public By profileDropDown = By.cssSelector("span[class='oxd-userdropdown-tab']");
-
-    public By aboutDropDownText = By.xpath("//ul[@role='menu']/li/a[text()='About']");
-    public By aboutTab = By.cssSelector("div[role='document']");
-
-    public By popUpHeaderText = By.cssSelector("div[class='orangehrm-modal-header'] > h6");
-
-    public By popUpInText = By.cssSelector("div[class='oxd-grid-item oxd-grid-item--gutters'] > p");
-
-    public boolean navigatingToAboutPage(String[] expectedTexts) throws InterruptedException {
-        boolean valueToReturn = false;
-
-        UI.clickElement(profileDropDown);
-        UI.clickElement(aboutDropDownText);
-        UI.waitForElement(aboutTab);
-
-        WebElement aboutTabVisibility = driver.findElement(aboutTab);
-        if (UI.isElementDisplayed(aboutTabVisibility)) {
-            valueToReturn = true;
-        }
-        UI.highlightElementByGreen(driver.findElement(aboutTab));
-        UI.sleep(2, TimeUnit.SECONDS);
-        aboutPopUpTextValidation(expectedTexts);
-        return valueToReturn;
+    public void navigateToAboutPage() throws InterruptedException {
+        UI.waitForElement(userDropdown);
+        UI.clickElement(userDropdown);
+        UI.waitForElement(aboutMenuOption);
+        UI.clickElement(aboutMenuOption);
     }
 
-    List<WebElement> elements = new ArrayList<>();
+    public boolean validatingAboutPopUpVisibility(){
+        UI.waitForElement(aboutPopup);
+        return UI.isElementDisplayed(aboutPopup);
+    }
 
-    public void aboutPopUpTextValidation(String[] ExpectedTexts) {
-
-        List<WebElement> elements = driver.findElements(popUpInText);
-
-        List<String> elementTexts = new ArrayList<>();
-
-        for (WebElement element : elements) {
-            String text = element.getText();
-            elementTexts.add(text);
-        }
+    public boolean validatingAboutPopUpHeader(){
+        UI.waitForElement(aboutPopupHeader);
+        return  UI.isElementDisplayed(aboutPopupHeader);
+    }
+    public List<String> validateAboutPopupTexts(String[] expectedTexts) {
+        List<String> mismatches = new ArrayList<>();
+        List<WebElement> elements = driver.findElements(aboutPopupContent);
 
         for (int i = 0; i < elements.size(); i++) {
-            WebElement element = elements.get(i);
-            String text = element.getText().trim();
+            String actualText = elements.get(i).getText().trim();
+            String expectedText = expectedTexts[i].trim();
 
-            if (text.equals(ExpectedTexts[i].trim())) {
-                UI.highlightElementByGreen(element);
-                UI.sleep(500, TimeUnit.MILLISECONDS);
-
+            if (!actualText.equals(expectedText)) {
+                mismatches.add("Expected: " + expectedText + ", but got: " + actualText);
+                UI.highlightElementByRed(elements.get(i));
             } else {
-                UI.highlightElementByRed(element);
+                UI.highlightElementByGreen(elements.get(i));
+                UI.sleep(500);
             }
         }
+        System.out.println("mismatches -------------------"+mismatches);
+        return mismatches;
     }
 }
