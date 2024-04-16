@@ -4,14 +4,16 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Attachment;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import Utils.*;
 
-public class BaseTest {
+public  class BaseTest {
 
 
     public static WebDriver driver;
@@ -21,8 +23,8 @@ public class BaseTest {
     public void setup(ITestResult result) {
 
         // Set up WebDriver and open the browser
-        WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
 
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
@@ -48,4 +50,6 @@ public class BaseTest {
         UI.sendText(By.xpath("//input[@type='password']"), "admin123");
         UI.clickElement(By.xpath("//button[@type='submit']"));
     }
+
+
 }
