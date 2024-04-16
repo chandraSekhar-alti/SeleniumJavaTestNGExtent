@@ -21,8 +21,8 @@ public class BaseTest {
     public void setup(ITestResult result) {
 
         // Set up WebDriver and open the browser
-        WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
 
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
@@ -39,7 +39,6 @@ public class BaseTest {
             driver.quit();
         }
     }
-
 
 
     public static void loginUser() {
