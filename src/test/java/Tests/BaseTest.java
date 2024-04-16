@@ -43,7 +43,6 @@ public  class BaseTest {
     }
 
 
-
     public static void loginUser() {
         // Perform login steps
         UI.sendText(By.xpath("//input[@name='username']"), "Admin");
