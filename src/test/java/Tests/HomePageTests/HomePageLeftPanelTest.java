@@ -17,7 +17,7 @@ public class HomePageLeftPanelTest extends BaseTest {
         boolean isImageDisplayed = imageElement.isDisplayed();
 
         Assert.assertTrue(isImageDisplayed, "Image is not visible");
-
+        homePage.validatingSideBarPanel();
     }
 
 
