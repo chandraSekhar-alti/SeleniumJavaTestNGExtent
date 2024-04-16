@@ -3,9 +3,11 @@ package Tests.ProfilePageTests;
 import Pages.ProfilePage.AboutTab;
 import Tests.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
+
 
 public class AboutTabTests extends BaseTest {
     private final String[] expectedTexts = {
@@ -14,6 +16,7 @@ public class AboutTabTests extends BaseTest {
     };
 
     @Test
+
     public void testAboutTabValidation() throws InterruptedException {
         AboutTab aboutTab = new AboutTab(driver);
         aboutTab.navigateToAboutPage();
@@ -30,4 +33,6 @@ public class AboutTabTests extends BaseTest {
         AboutTab aboutTab = new AboutTab(driver);
         Assert.assertTrue(aboutTab.validatingAboutPopUpVisibility(), "Pop-up is not visible");
     }
+
+
 }
