@@ -12,5 +12,4 @@ public class HomePageLeftPanel {
 
     public By homePageLogoImage = By.cssSelector("div[class='oxd-brand-banner'] > img");
 
-
 }
