@@ -77,11 +77,16 @@ public class UI {
      *
      * @param element The locator of the element to scroll.
      */
-    public static void scrollIntoView(WebElement element) {
+    public static void scrollIntoViewTop(WebElement element) {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
+    public static void scrollIntoViewCenter(WebElement element) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        // Scrolls the element to the middle of the viewport
+        jsExecutor.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+    }
     /**
      * Sends text to a web element located by the specified locator.
      *
@@ -326,6 +331,20 @@ public class UI {
         for (WebElement element : elements) {
             highlightElementByRed(element);
         }
+    }
+
+    /**
+     * Checks if the current page URL matches the expected URL.
+     * @param expectedURL The expected URL to compare with the current URL.
+     * @return True if the current URL matches the expected URL, otherwise False.
+     */
+    public static boolean isPageURL( String expectedURL) {
+        // Get the current URL of the page
+        String currentURL = driver.getCurrentUrl();
+        System.out.println("currentURL :- "+currentURL);
+        System.out.println("expectedURL :- "+expectedURL);
+        // Compare the current URL with the expected URL
+        return currentURL.equals(expectedURL);
     }
 
 }
