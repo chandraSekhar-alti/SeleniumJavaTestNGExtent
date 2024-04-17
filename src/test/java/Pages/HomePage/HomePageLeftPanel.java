@@ -36,7 +36,7 @@ public class HomePageLeftPanel {
         for (int i = 0; i < 7; i++) {
             WebElement cardDiv = elements.get(i);
             UI.isElementDisplayed(cardDiv);
-            UI.scrollIntoView(cardDiv);
+            UI.scrollIntoViewTop(cardDiv);
             UI.highlightElementByGreen(cardDiv);
             UI.sleep(500);
         }

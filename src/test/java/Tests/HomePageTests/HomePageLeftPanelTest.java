@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class HomePageLeftPanelTest extends BaseTest {
 
     @Test
-    public void testHomepageLogoVisibility() {
+    public void testHomepageValidation() {
         HomePageLeftPanel homePage = new HomePageLeftPanel(driver);
 
         WebElement imageElement = driver.findElement(homePage.homePageLogoImage);

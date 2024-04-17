@@ -13,12 +13,15 @@ import org.testng.annotations.Parameters;
 import Utils.UI;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Properties;
 
 public class BaseTest {
 
     public static WebDriver driver;
+    public static Properties properties;
     protected static Map<String, Map<String, String>> environmentConfig;
 
     @BeforeMethod
@@ -79,6 +82,16 @@ public class BaseTest {
             environmentConfig = objectMapper.readValue(new File("src/test/resources/config.json"), Map.class);
         } catch (IOException e) {
             // Print error stack trace if there's an issue loading the config file
+            e.printStackTrace();
+        }
+    }
+
+    // Load properties from config.properties file
+    public static void loadProperties() {
+        properties = new Properties();
+        try (FileInputStream inputStream = new FileInputStream("src/test/resources/config.properties")) {
+            properties.load(inputStream);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
