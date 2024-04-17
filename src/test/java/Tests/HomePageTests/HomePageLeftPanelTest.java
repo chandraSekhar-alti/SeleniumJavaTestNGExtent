@@ -18,6 +18,7 @@ public class HomePageLeftPanelTest extends BaseTest {
 
         Assert.assertTrue(isImageDisplayed, "Image is not visible");
         homePage.validatingSideBarPanel();
+        homePage.validatingDashBoardCards();
     }
 
 

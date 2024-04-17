@@ -1,5 +1,6 @@
 package Pages.HomePage;
 
+
 import Utils.UI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,20 +17,29 @@ public class HomePageLeftPanel {
 
     public By homePageLogoImage = By.cssSelector("div[class='oxd-brand-banner'] > img");
 
-    public  By leftPanelItems = By.cssSelector("a[class='oxd-main-menu-item']");
+    public By leftPanelItems = By.cssSelector("a[class='oxd-main-menu-item']");
 
-    public void validatingSideBarPanel(){
+    public By dashBoardCards = By.cssSelector("div[class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget'] > div ");
+
+    public void validatingSideBarPanel() {
         List<WebElement> elements = driver.findElements(leftPanelItems);
-
-        System.out.println("elements :-----" + elements);
 
         for (WebElement element : elements) {
             UI.isElementDisplayed(element);
             UI.highlightElementByGreen(element);
             UI.sleep(500);
         }
+    }
 
-
+    public void validatingDashBoardCards() {
+        List<WebElement> elements = driver.findElements(dashBoardCards);
+        for (int i = 0; i < 7; i++) {
+            WebElement cardDiv = elements.get(i);
+            UI.isElementDisplayed(cardDiv);
+            UI.scrollIntoView(cardDiv);
+            UI.highlightElementByGreen(cardDiv);
+            UI.sleep(500);
+        }
     }
 
 }

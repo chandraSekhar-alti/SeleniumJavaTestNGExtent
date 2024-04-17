@@ -75,6 +75,16 @@ public class UI {
     /**
      * Sends text to a web element located by the specified locator.
      *
+     * @param element The locator of the element to scroll.
+     */
+    public static void scrollIntoView(WebElement element) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        jsExecutor.executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    /**
+     * Sends text to a web element located by the specified locator.
+     *
      * @param locator The locator of the element to send text to.
      * @param text    The text to send.
      */
