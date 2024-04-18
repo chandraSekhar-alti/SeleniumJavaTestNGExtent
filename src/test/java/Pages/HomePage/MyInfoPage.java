@@ -5,6 +5,7 @@ import Utils.BrowserActions;
 import Utils.UI;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -97,15 +98,23 @@ public class MyInfoPage {
         UI.sleep(3000);
     }
 
+    //I have used implicit waits in this function because the application behaviour changes for one run to another
     public void updatingProfilePhoto() {
-        UI.isElementDisplayed(employeeProfilePhoto);
-        UI.clickElement(employeeProfilePhoto);
-        UI.sleep(2000);
-        WebElement fileInputField = driver.findElement(By.xpath("//input[@type='file']"));
-        String imagePath = System.getProperty("user.dir")+"\\src\\test\\resources\\bird-thumbnail.jpg";
-        fileInputField.sendKeys(imagePath);
-        UI.sleep(3000);
-        clickOnSaveButton();
+        if (UI.isElementClickable(employeeProfilePhoto)){
+            UI.scrollIntoViewCenter(employeeProfilePhoto);
+            UI.sleep(3000);
+            UI.clickElement(employeeProfilePhoto);
+            UI.sleep(3000);
+            WebElement fileInputField = driver.findElement(By.xpath("//input[@type='file']"));
+            String imagePath = System.getProperty("user.dir")+"\\src\\test\\resources\\bird-thumbnail.jpg";
+            fileInputField.sendKeys(imagePath);
+            UI.sleep(3000);
+            clickOnSaveButton();
+        }else {
+            System.out.println("Profile Photo button is not clickable");
+            Assert.fail();
+        }
+
 
     }
 

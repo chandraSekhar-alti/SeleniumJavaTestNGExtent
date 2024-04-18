@@ -29,8 +29,9 @@ public class AboutTabTests extends BaseTest {
     }
 
     @Test(priority = 2,description = "This test verifies the visibility of the 'About' pop-up.")
-    public void testAboutTabValidationPart2() {
+    public void testAboutTabValidationPart2() throws InterruptedException {
         AboutTab aboutTab = new AboutTab(driver);
+        aboutTab.navigateToAboutPage();
         Assert.assertTrue(aboutTab.validatingAboutPopUpVisibility(), "Pop-up is not visible");
     }
 

@@ -59,6 +59,38 @@ public class UI {
     }
 
     /**
+     * Checks whether the given WebElement is clickable.
+     *
+     * @param driver  the WebDriver instance.
+     * @param locator the locator of the element to check.
+     * @return true if the element is clickable (visible and enabled), false otherwise.
+     */
+    public static boolean isElementClickable(By locator) {
+        try {
+            WebElement element = driver.findElement(locator);
+            if (element.isDisplayed() && element.isEnabled()) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.err.println("Exception occurred while checking element clickability: " + e.getMessage());
+        }
+
+        return false;
+    }
+
+    public static boolean isElementClickable(WebElement element) {
+        try {
+            if (element.isDisplayed() && element.isEnabled()) {
+                return true;
+            }
+        } catch (Exception e) {
+            System.err.println("Exception occurred while checking element clickability: " + e.getMessage());
+        }
+
+        return false;
+    }
+
+    /**
      * Clicks on a web element located by the specified locator.
      *
      * @param locator The locator of the element to click.
@@ -116,6 +148,11 @@ public class UI {
         jsExecutor.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
     }
 
+    public static void scrollIntoViewCenter(By locator) {
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        // Scrolls the element to the middle of the viewport
+        jsExecutor.executeScript("arguments[0].scrollIntoView({block: 'center'});", driver.findElement(locator));
+    }
     /**
      * Sends text to a web element located by the specified locator.
      *
@@ -379,7 +416,6 @@ public class UI {
             highlightElementByRed(element);
         }
     }
-
 
 
 }
