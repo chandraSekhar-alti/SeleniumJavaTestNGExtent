@@ -1,5 +1,6 @@
 package Tests;
 
+import Utils.BrowserActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -37,7 +38,7 @@ public class BaseTest {
 
         // Get base URL from the environment configuration
         String baseUrl = environmentConfig.get(environment).get("baseUrl");
-        driver.get(baseUrl);
+        BrowserActions.navigateToUrl(baseUrl);
 
         // Wait for the page to load completely
         UI.waitForElement(By.className("orangehrm-login-logo"));
@@ -53,7 +54,7 @@ public class BaseTest {
     public void tearDown() {
         // Close the browser and clean up the driver instance
         if (driver != null) {
-            driver.quit();
+            BrowserActions.quitBrowser();
             driver = null; // Set driver to null for cleanup
         }
     }
