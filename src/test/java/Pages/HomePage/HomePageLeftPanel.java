@@ -33,7 +33,7 @@ public class HomePageLeftPanel {
 
     public void validatingDashBoardCards() {
         List<WebElement> elements = driver.findElements(dashBoardCards);
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < elements.size(); i++) {
             WebElement cardDiv = elements.get(i);
             UI.isElementDisplayed(cardDiv);
             UI.scrollIntoViewTop(cardDiv);
