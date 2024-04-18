@@ -64,8 +64,8 @@ public class BaseTest {
         String password = environmentConfig.get(environment).get("password");
 
         // Perform login steps using the retrieved credentials
-        UI.sendText(By.xpath("//input[@name='username']"), username);
-        UI.sendText(By.xpath("//input[@type='password']"), password);
+        UI.sendKeys(By.xpath("//input[@name='username']"), username);
+        UI.sendKeys(By.xpath("//input[@type='password']"), password);
         UI.clickElement(By.xpath("//button[@type='submit']"));
     }
 

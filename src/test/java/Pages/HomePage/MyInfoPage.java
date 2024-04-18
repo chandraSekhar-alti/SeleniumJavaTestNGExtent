@@ -2,17 +2,10 @@ package Pages.HomePage;
 
 import Tests.BaseTest;
 import Utils.UI;
-import org.bouncycastle.pqc.crypto.newhope.NHSecretKeyProcessor;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 
-import java.time.Duration;
 import java.util.List;
-import java.util.Properties;
 
 import static Tests.BaseTest.properties;
 
@@ -27,6 +20,23 @@ public class MyInfoPage {
 
     public By infoFields = By.cssSelector("div[class='oxd-input-group oxd-input-field-bottom-space']");
 
+    public By firstName = By.cssSelector("input[name='firstName']");
+
+    public By lastName = By.cssSelector("input[name='lastName']");
+
+    public By middleName = By.cssSelector("input[name='middleName']");
+
+    public By employeeID = By.xpath("//label[text()='Employee Id']/parent::div/following-sibling::div/input");
+
+    public By otherID = By.xpath("//label[text()='Other Id']/parent::div/following-sibling::div/input");
+
+    public By driverLicenceNumber = By.xpath("//label[text()=\"Driver's License Number\"]/parent::div/following-sibling::div/input");
+
+    public By saveButton = By.xpath("(//button[text()=' Save '])[1]");
+
+    public By employeeProfilePhoto = By.cssSelector("img[class='employee-image']");
+
+    public By uploadButton = By.xpath("//i[@class='oxd-icon bi-plus']/parent::button");
 
     public void navigatingToMyInfoTab() {
         UI.waitForElement(myInfoSideBarButton);
@@ -59,4 +69,43 @@ public class MyInfoPage {
             UI.sleep(500);
         }
     }
+
+    public void enterPersonalDetailsForm() {
+        implicitClearField(firstName);
+        UI.sendKeys(firstName, "Demo");
+        implicitClearField(middleName);
+        UI.sendKeys(middleName, "sample");
+        implicitClearField(lastName);
+        UI.sendKeys(lastName, "User");
+        implicitClearField(employeeID);
+        UI.sendKeys(employeeID, "FS-200");
+        implicitClearField(otherID);
+        UI.sendKeys(otherID, "RS-952");
+        implicitClearField(driverLicenceNumber);
+        UI.sendKeys(driverLicenceNumber, "AP-7653");
+    }
+
+    public void implicitClearField(By inputField) {
+        Actions actions = new Actions(driver);
+        actions.click(driver.findElement(inputField)).keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL).sendKeys(Keys.DELETE).perform();
+    }
+
+    public void clickOnSaveButton() {
+        UI.isElementDisplayed(saveButton);
+        UI.clickElement(saveButton);
+        UI.sleep(3000);
+    }
+
+    public void updatingProfilePhoto() {
+        UI.isElementDisplayed(employeeProfilePhoto);
+        UI.clickElement(employeeProfilePhoto);
+        UI.sleep(2000);
+        WebElement fileInputField = driver.findElement(By.xpath("//input[@type='file']"));
+        String imagePath = System.getProperty("user.dir")+"\\src\\test\\resources\\bird-thumbnail.jpg";
+        fileInputField.sendKeys(imagePath);
+        UI.sleep(3000);
+        clickOnSaveButton();
+
+    }
+
 }

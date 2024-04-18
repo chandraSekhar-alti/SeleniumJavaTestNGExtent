@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 public class HomePageLeftPanelTest extends BaseTest {
 
-    @Test
+    @Test(description = "This test validates the homepage by checking the visibility of the logo image and ensuring the sidebar panel and dashboard cards are correctly displayed and functional.")
     public void testHomepageValidation() {
         HomePageLeftPanel homePage = new HomePageLeftPanel(driver);
 

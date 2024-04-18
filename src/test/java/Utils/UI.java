@@ -4,6 +4,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.List;
@@ -14,6 +16,8 @@ import static Tests.BaseTest.driver;
 
 public class UI {
     private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(10);
+    private static final Logger logger = LoggerFactory.getLogger(UI.class);
+
 
     /**
      * Sets a custom timeout duration for wait operations.
@@ -73,6 +77,30 @@ public class UI {
     }
 
     /**
+     * Clears the text from the specified input field.
+     *
+     * @param element The input field (WebElement) from which to clear the text.
+     */
+    public static void clearInputField(WebElement element) {
+        // Ensure the element is intractable before attempting to clear it
+        if (element.isEnabled() && element.isDisplayed()) {
+            element.clear();
+        } else {
+            throw new IllegalStateException("The input field is not intractable.");
+        }
+    }
+
+    public static void clearInputField(By locator) {
+        // Ensure the element is intractable before attempting to clear it
+        if (driver.findElement(locator).isEnabled() && driver.findElement(locator).isDisplayed()) {
+            driver.findElement(locator).clear();
+        } else {
+            throw new IllegalStateException("The input field is not intractable.");
+        }
+    }
+
+
+    /**
      * Sends text to a web element located by the specified locator.
      *
      * @param element The locator of the element to scroll.
@@ -87,14 +115,24 @@ public class UI {
         // Scrolls the element to the middle of the viewport
         jsExecutor.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
     }
+
     /**
      * Sends text to a web element located by the specified locator.
      *
      * @param locator The locator of the element to send text to.
      * @param text    The text to send.
      */
-    public static void sendText(By locator, String text) {
-        driver.findElement(locator).sendKeys(text);
+    public static void sendKeys(By locator, String text) {
+        try {
+            driver.findElement(locator).sendKeys(text);
+        } catch (Exception e) {
+            // Log the exception at an error level
+            logger.error("Failed to type text into input field: " + e.getMessage(), e);
+
+            // Rethrow the exception if you want the calling code to handle it
+            // Alternatively, you can handle it differently depending on your application's needs
+            throw e;
+        }
     }
 
     /**
@@ -103,8 +141,17 @@ public class UI {
      * @param element The web element to send text to.
      * @param text    The text to send.
      */
-    public static void sendText(WebElement element, String text) {
-        element.sendKeys(text);
+    public static void sendKeys(WebElement element, String text) {
+        try {
+            element.sendKeys(text);
+        } catch (Exception e) {
+            // Log the exception at an error level
+            logger.error("Failed to type text into input field: " + e.getMessage(), e);
+
+            // Rethrow the exception if you want the calling code to handle it
+            // Alternatively, you can handle it differently depending on your application's needs
+            throw e;
+        }
     }
 
     /**
@@ -255,11 +302,11 @@ public class UI {
     /**
      * Puts the current thread to sleep for the specified number of seconds.
      *
-     * @param time     The number of milliseconds to sleep.
+     * @param time The number of milliseconds to sleep.
      */
-    public static void sleep(long time) {
+    public static void sleep(long timeInMilliSeconds) {
         try {
-            Thread.sleep(time);
+            Thread.sleep(timeInMilliSeconds);
 
         } catch (InterruptedException e) {
             System.out.println("Sleep was interrupted: " + e.getMessage());
@@ -335,14 +382,15 @@ public class UI {
 
     /**
      * Checks if the current page URL matches the expected URL.
+     *
      * @param expectedURL The expected URL to compare with the current URL.
      * @return True if the current URL matches the expected URL, otherwise False.
      */
-    public static boolean isPageURL( String expectedURL) {
+    public static boolean isPageURL(String expectedURL) {
         // Get the current URL of the page
         String currentURL = driver.getCurrentUrl();
-        System.out.println("currentURL :- "+currentURL);
-        System.out.println("expectedURL :- "+expectedURL);
+        System.out.println("currentURL :- " + currentURL);
+        System.out.println("expectedURL :- " + expectedURL);
         // Compare the current URL with the expected URL
         return currentURL.equals(expectedURL);
     }
