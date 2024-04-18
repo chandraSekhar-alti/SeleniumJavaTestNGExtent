@@ -380,19 +380,6 @@ public class UI {
         }
     }
 
-    /**
-     * Checks if the current page URL matches the expected URL.
-     *
-     * @param expectedURL The expected URL to compare with the current URL.
-     * @return True if the current URL matches the expected URL, otherwise False.
-     */
-    public static boolean isPageURL(String expectedURL) {
-        // Get the current URL of the page
-        String currentURL = driver.getCurrentUrl();
-        System.out.println("currentURL :- " + currentURL);
-        System.out.println("expectedURL :- " + expectedURL);
-        // Compare the current URL with the expected URL
-        return currentURL.equals(expectedURL);
-    }
+
 
 }

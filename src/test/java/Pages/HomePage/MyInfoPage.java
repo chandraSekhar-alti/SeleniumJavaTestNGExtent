@@ -1,6 +1,7 @@
 package Pages.HomePage;
 
 import Tests.BaseTest;
+import Utils.BrowserActions;
 import Utils.UI;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -52,7 +53,7 @@ public class MyInfoPage {
         BaseTest.loadProperties();
         String MYINFO_URL = properties.getProperty("MyInfoPageURL");
 
-        if (UI.isPageURL(MYINFO_URL)) {
+        if (BrowserActions.isPageURL(MYINFO_URL)) {
             valueToReturn = true;
         }
         return valueToReturn;
