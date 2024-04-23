@@ -2,29 +2,33 @@ package Accessibility;
 
 import Utils.BrowserActions;
 import Utils.UI;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.deque.html.axecore.results.Results;
-import com.deque.html.axecore.results.Rule;
 import com.deque.html.axecore.selenium.AxeBuilder;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import org.testng.annotations.BeforeSuite;
+
 import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONObject;
+
 
 public class AccessibilityBaseTest {
     protected WebDriver driver;
+    protected ExtentReports extentReports;
+    protected ExtentTest test;
 
     @BeforeMethod
     public void setup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        test = extentReports.createTest("Accessibility Test");
     }
 
     @AfterMethod
@@ -33,6 +37,18 @@ public class AccessibilityBaseTest {
             driver.quit();
             driver = null;
         }
+    }
+
+    @AfterSuite
+    public void teardownReporting() {
+        extentReports.flush();
+    }
+
+    @BeforeSuite
+    public void setupReporting() {
+        ExtentSparkReporter htmlReporter = new ExtentSparkReporter(System.getProperty("user.dir")+"/src/test/java/Accessibility/Reports/accessibility_report.html");
+        extentReports = new ExtentReports();
+        extentReports.attachReporter(htmlReporter);
     }
 
     protected Results performAccessibilityAnalysis() {
@@ -49,24 +65,5 @@ public class AccessibilityBaseTest {
         return axeBuilder.analyze(driver);
     }
 
-    protected void saveAccessibilityResultsToJson(Results results, String filePath) {
-        JSONArray violationsArray = new JSONArray();
 
-        List<Rule> violations = results.getViolations(); // Get violations from Results
-        for (Rule violation : violations) {
-            JSONObject violationJson = new JSONObject();
-            violationJson.put("id", violation.getId());
-            violationJson.put("impact", violation.getImpact());
-            violationJson.put("description", violation.getDescription());
-            violationJson.put("helpUrl", violation.getHelpUrl());
-
-            violationsArray.put(violationJson); // Add each violation to the JSON array
-        }
-
-        try (FileWriter fileWriter = new FileWriter(new File(filePath))) {
-            fileWriter.write(violationsArray.toString(4)); // Save formatted JSON to the file
-        } catch (IOException e) {
-            System.err.println("Error saving accessibility results: " + e.getMessage());
-        }
-    }
 }
