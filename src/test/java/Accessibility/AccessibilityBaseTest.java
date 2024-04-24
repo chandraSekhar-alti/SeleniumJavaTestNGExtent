@@ -17,18 +17,28 @@ import org.testng.annotations.BeforeSuite;
 
 import java.util.List;
 
+import java.lang.reflect.Method;
+import java.util.Properties;
+
 
 public class AccessibilityBaseTest {
     protected WebDriver driver;
     protected ExtentReports extentReports;
     protected ExtentTest test;
+    public static Properties properties;
 
     @BeforeMethod
-    public void setup() {
+    public void setup(Method method) {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        test = extentReports.createTest("Accessibility Test");
+        Utils.loadProperties();
+
+        String className = this.getClass().getSimpleName();
+        String testName = method.getName();
+
+        test = extentReports.createTest(testName);
+        test.assignCategory(className);
     }
 
     @AfterMethod
@@ -46,23 +56,9 @@ public class AccessibilityBaseTest {
 
     @BeforeSuite
     public void setupReporting() {
-        ExtentSparkReporter htmlReporter = new ExtentSparkReporter(System.getProperty("user.dir")+"/src/test/java/Accessibility/Reports/accessibility_report.html");
+        ExtentSparkReporter htmlReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/src/test/java/Accessibility/Reports/accessibility_report.html");
         extentReports = new ExtentReports();
         extentReports.attachReporter(htmlReporter);
-    }
-
-    protected Results performAccessibilityAnalysis() {
-        AxeBuilder axeBuilder = new AxeBuilder();
-        return axeBuilder.analyze(driver);
-    }
-
-    protected Results performAccessibilityAnalysisWithExclusions(List<String> rulesToExclude) {
-        if (rulesToExclude == null) {
-            throw new IllegalArgumentException("Rules to exclude cannot be null.");
-        }
-
-        AxeBuilder axeBuilder = new AxeBuilder().disableRules(rulesToExclude);
-        return axeBuilder.analyze(driver);
     }
 
 

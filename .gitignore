@@ -42,5 +42,4 @@ build/
 ### Mac OS ###
 .DS_Store
 
-/src/test/resources
 /src/test/java/Accessibility/Reports/accessibility_report.html
