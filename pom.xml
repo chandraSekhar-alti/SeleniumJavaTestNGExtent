@@ -94,12 +94,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>SeleniumJavaTestNGExtent</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.1.1</version>
@@ -160,7 +154,6 @@
                         <artifactId>dequeutilites</artifactId>
                         <version>4.9.0</version>
                     </dependency>
-
 
                 </dependencies>
 
