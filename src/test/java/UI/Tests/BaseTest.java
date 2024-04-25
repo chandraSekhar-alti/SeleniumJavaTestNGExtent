@@ -1,4 +1,4 @@
-package Tests;
+package UI.Tests;
 
 import Utils.BrowserActions;
 import com.fasterxml.jackson.databind.ObjectMapper;

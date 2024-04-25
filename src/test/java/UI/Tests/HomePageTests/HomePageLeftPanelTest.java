@@ -1,7 +1,7 @@
-package Tests.HomePageTests;
+package UI.Tests.HomePageTests;
 
-import Pages.HomePage.HomePageLeftPanel;
-import Tests.BaseTest;
+import UI.Pages.HomePage.HomePageLeftPanel;
+import UI.Tests.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;

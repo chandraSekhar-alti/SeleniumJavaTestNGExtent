@@ -3,7 +3,7 @@ package Accessibility.Tests;
 
 import Accessibility.AccessibilityBaseTest;
 import Accessibility.Utils;
-import Tests.BaseTest;
+import UI.Tests.BaseTest;
 import com.deque.html.axecore.results.Results;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

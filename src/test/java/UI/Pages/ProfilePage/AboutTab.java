@@ -1,4 +1,4 @@
-package Pages.ProfilePage;
+package UI.Pages.ProfilePage;
 
 import Utils.UI;
 import org.openqa.selenium.By;

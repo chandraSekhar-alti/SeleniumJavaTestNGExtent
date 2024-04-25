@@ -1,4 +1,4 @@
-package Reports;
+package UI.Reports;
 
 
 import io.qameta.allure.Attachment;

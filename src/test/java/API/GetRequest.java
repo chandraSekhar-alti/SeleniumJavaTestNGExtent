@@ -1,2 +1,8 @@
-package API;public class GetRequest {
+package API;
+
+//import io.restassured.*;
+
+public class GetRequest {
+
+
 }

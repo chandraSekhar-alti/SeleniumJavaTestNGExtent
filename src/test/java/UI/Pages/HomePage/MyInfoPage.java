@@ -1,6 +1,6 @@
-package Pages.HomePage;
+package UI.Pages.HomePage;
 
-import Tests.BaseTest;
+import UI.Tests.BaseTest;
 import Utils.BrowserActions;
 import Utils.UI;
 import org.openqa.selenium.*;
@@ -9,7 +9,7 @@ import org.testng.Assert;
 
 import java.util.List;
 
-import static Tests.BaseTest.properties;
+import static UI.Tests.BaseTest.properties;
 
 public class MyInfoPage {
     public static WebDriver driver;

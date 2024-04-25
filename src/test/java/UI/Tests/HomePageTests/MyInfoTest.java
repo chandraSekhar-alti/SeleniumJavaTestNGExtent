@@ -1,13 +1,13 @@
-package Tests.HomePageTests;
+package UI.Tests.HomePageTests;
 
-import Pages.HomePage.MyInfoPage;
-import Tests.BaseTest;
+import UI.Pages.HomePage.MyInfoPage;
+import UI.Tests.BaseTest;
 import net.bytebuddy.build.Plugin;
 import org.apache.hc.core5.reactor.Command;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static Tests.BaseTest.driver;
+import static UI.Tests.BaseTest.driver;
 
 public class MyInfoTest extends BaseTest {
 

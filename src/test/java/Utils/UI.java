@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
-import static Tests.BaseTest.driver;
+import static UI.Tests.BaseTest.driver;
 
 public class UI {
     private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(10);

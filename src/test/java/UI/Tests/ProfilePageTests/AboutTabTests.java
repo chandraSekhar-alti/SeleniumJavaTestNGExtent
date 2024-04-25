@@ -1,7 +1,7 @@
-package Tests.ProfilePageTests;
+package UI.Tests.ProfilePageTests;
 
-import Pages.ProfilePage.AboutTab;
-import Tests.BaseTest;
+import UI.Pages.ProfilePage.AboutTab;
+import UI.Tests.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;

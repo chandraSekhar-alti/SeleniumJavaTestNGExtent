@@ -1,4 +1,4 @@
-package Pages.HomePage;
+package UI.Pages.HomePage;
 
 
 import Utils.UI;
