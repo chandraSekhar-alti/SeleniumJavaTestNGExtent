@@ -1,12 +1,9 @@
 package Accessibility;
 
-import Utils.BrowserActions;
-import Utils.UI;
+
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.deque.html.axecore.results.Results;
-import com.deque.html.axecore.selenium.AxeBuilder;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

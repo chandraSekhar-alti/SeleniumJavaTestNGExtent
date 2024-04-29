@@ -1,0 +1,172 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://www.maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.feuji</groupId>
+	<artifactId>Selenium_Automation</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- Project Information -->
+	<name>Selenium Automation</name>
+
+	<!-- Dependencies -->
+	<dependencies>
+		<!-- Selenium Java -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.12.1</version>
+			<!-- URL: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		</dependency>
+
+		<!-- WebDriver Manager -->
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>4.3.1</version>
+			<!-- URL: https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		</dependency>
+
+		<!-- TestNG -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>7.9.0</version>
+			<scope>test</scope>
+			<!-- URL: https://mvnrepository.com/artifact/org.testng/testng -->
+		</dependency>
+
+		<!-- Extent Reports -->
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>5.0.9</version>
+			<!-- URL: https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+		</dependency>
+
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>provided</scope>
+			<!-- URL: https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		</dependency>
+
+		<!-- Hamcrest -->
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest</artifactId>
+			<version>2.2</version>
+			<scope>test</scope>
+			<!-- URL: https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
+		</dependency>
+
+		<!-- JsonPath -->
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<version>2.8.0</version>
+			<!-- URL: https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path -->
+		</dependency>
+
+		<!-- Rest-Assured -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>5.3.2</version>
+			<scope>test</scope>
+			<!-- URL: https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		</dependency>
+
+		<!-- JSON -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20231013</version>
+			<!-- URL: https://mvnrepository.com/artifact/org.json/json -->
+		</dependency>
+
+		<!-- JSON Schema Validator -->
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>5.4.0</version>
+			<!-- URL: https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator -->
+		</dependency>
+
+		<!-- JCabi Log -->
+		<dependency>
+			<groupId>com.jcabi</groupId>
+			<artifactId>jcabi-log</artifactId>
+			<version>0.17.1</version>
+			<!-- URL: https://mvnrepository.com/artifact/com.jcabi/jcabi-log -->
+		</dependency>
+
+		<!-- Apache Log4j -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.20.0</version>
+			<!-- URL: https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.20.0</version>
+			<!-- URL: https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.20.0</version>
+			<scope>test</scope>
+			<!-- URL: https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+		</dependency>
+
+		<!-- Commons IO -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.15.1</version>
+			<!-- URL: https://mvnrepository.com/artifact/commons-io/commons-io -->
+		</dependency>
+
+	</dependencies>
+
+	<!-- Build Configuration -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.10.1</version>
+				<configuration>
+					<source>11</source> <!-- Correct Java version -->
+					<target>11</target>
+				</configuration>
+				<!-- URL: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+				<!-- URL: https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+			</plugin>
+		</plugins>
+	</build>
+</project>
