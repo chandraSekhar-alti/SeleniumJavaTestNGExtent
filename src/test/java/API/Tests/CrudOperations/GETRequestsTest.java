@@ -11,9 +11,9 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 public class GETRequestsTest extends ApiBaseTest {
 
-    @Test
-    //performing get action and storing the data in response variable and doing assertions
-    public void testGetReqTypeOne(){
+    @Test(priority = 1, groups = {"smoke"}, description = "Fetches the list of posts from the live server and validates the response.")
+    // Perform a GET request to fetch posts and validate the response
+    public void testGetRequestTypeOne() {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .when()
@@ -22,30 +22,31 @@ public class GETRequestsTest extends ApiBaseTest {
                 .extract().response();
 
         String resData = response.asString();
+        System.out.println("Response data: " + resData);
 
-        System.out.println("resData :- "+resData);
-        Assert.assertEquals(200,response.statusCode());
-        Assert.assertEquals("Understanding REST APIs",response.jsonPath().getString("title[1]"));
+        // Validate the status code and the second post's title
+        Assert.assertEquals(response.statusCode(), 200);
+        Assert.assertEquals(response.jsonPath().getString("title[1]"), "Understanding REST APIs");
     }
 
-    @Test
-    //Performing get action on API and doing assertion at the same time
-    public void testGetReqTypeTwo(){
+    @Test(priority = 1, groups = {"smoke"}, description = "Fetches the list of posts from the live server and validates the second post's title.")
+    // Perform a GET request and validate the status code and response content
+    public void testGetRequestTypeTwo() {
         given()
                 .contentType(ContentType.JSON)
-        .when()
+                .when()
                 .get("posts")
-        .then()
+                .then()
                 .statusCode(200)
-                .body("title[1]",equalTo("Understanding REST APIs"));
+                .body("title[1]", equalTo("Understanding REST APIs"));
     }
 
-    @Test
-    //Performing GET action on API with passing the Query parameters
-    public void testGetRequestWithQueryParam(){
+    @Test(priority = 2, groups = {"smoke"}, description = "Fetches data from the comments endpoint using query parameters and validates the response.")
+    // Perform a GET request with query parameters and validate the response
+    public void testGetRequestWithQueryParam() {
         Response response = given()
                 .contentType(ContentType.JSON)
-                .param("email", "alice.johnson@example.com")
+                .param("email", "alice.johnson@example.com")  // Pass a query parameter
                 .when()
                 .get("comments")
                 .then()
@@ -55,6 +56,6 @@ public class GETRequestsTest extends ApiBaseTest {
                 .extract().response();
 
         String resData = response.asString();
-        System.out.println("resData :- "+resData);
+        System.out.println("Response data: " + resData);
     }
 }

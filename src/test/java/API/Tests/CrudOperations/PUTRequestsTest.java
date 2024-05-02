@@ -19,7 +19,7 @@ public class PUTRequestsTest extends ApiBaseTest {
               "views": "200"
             }""";
 
-    @Test
+    @Test(priority = 3,groups = {"smoke"})
     public void testPutRequest(){
         Response response = given()
                 .header("Content-Type","application/json")
@@ -40,7 +40,7 @@ public class PUTRequestsTest extends ApiBaseTest {
 
     //PATCH Request
     //The PATCH request updates a resource but requires only the field(s) which is being updated in the payload:
-    @Test
+    @Test(priority = 3,groups = {"smoke"})
     public void testPatchRequest(){
 
         String patchResponseBody = """

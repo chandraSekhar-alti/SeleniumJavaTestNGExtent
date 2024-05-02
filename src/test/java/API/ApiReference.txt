@@ -1,0 +1,23 @@
+# API Testing with JSON Server
+
+This guide provides instructions for setting up `json-server` to create a mock API server for local testing. It also outlines common errors and how to resolve them.
+
+## Prerequisites
+Ensure you have the following installed before setting up `json-server`:
+- **Node.js**: You can download and install it from the [official Node.js website](https://nodejs.org/).
+
+## Setup Instructions
+To set up `json-server`, follow these steps:
+
+1. **Install JSON Server**
+   Open a terminal or command prompt, then run:
+   -> npm install json-server
+
+
+2. Start JSON Server
+   Navigate to the directory where your JSON file is located, then run:
+   -> npx json-server DB.json
+
+For more information, refer to this URL :- https://github.com/typicode/json-server
+
+

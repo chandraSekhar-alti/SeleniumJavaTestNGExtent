@@ -15,7 +15,7 @@ public class AboutTabTests extends UiBaseTest {
     };
 
 
-    @Test(priority = 1,description = "This test navigates to the 'About' page, verifies the visibility and header of the 'About' pop-up, and checks the texts within the pop-up against expected values.")
+    @Test(priority = 1, groups = {"regression"},description = "This test navigates to the 'About' page, verifies the visibility and header of the 'About' pop-up, and checks the texts within the pop-up against expected values.")
     public void testAboutTabValidation() throws InterruptedException {
         AboutTab aboutTab = new AboutTab(driver);
         aboutTab.navigateToAboutPage();
@@ -27,7 +27,7 @@ public class AboutTabTests extends UiBaseTest {
         Assert.assertTrue(mismatches.isEmpty(), "Mismatch found: " + mismatches);
     }
 
-    @Test(priority = 2,description = "This test verifies the visibility of the 'About' pop-up.")
+    @Test(priority = 2, groups = {"regression"}, description = "This test verifies the visibility of the 'About' pop-up.")
     public void testAboutTabValidationPart2() throws InterruptedException {
         AboutTab aboutTab = new AboutTab(driver);
         aboutTab.navigateToAboutPage();
