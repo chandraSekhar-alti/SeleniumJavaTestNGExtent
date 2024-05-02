@@ -1,6 +1,6 @@
 package UI.Reports;
 
-import UI.Tests.BaseTest;
+import UI.Tests.UiBaseTest;
 import io.qameta.allure.Attachment;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -8,7 +8,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class AllureTestListeners extends BaseTest implements ITestListener {
+public class AllureTestListeners extends UiBaseTest implements ITestListener {
 
     public AllureTestListeners() {
 

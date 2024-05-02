@@ -1,15 +1,11 @@
 package UI.Tests.HomePageTests;
 
 import UI.Pages.HomePage.MyInfoPage;
-import UI.Tests.BaseTest;
-import net.bytebuddy.build.Plugin;
-import org.apache.hc.core5.reactor.Command;
+import UI.Tests.UiBaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static UI.Tests.BaseTest.driver;
-
-public class MyInfoTest extends BaseTest {
+public class MyInfoTest extends UiBaseTest {
 
     @Test(priority = 1, description = "This test navigates to the 'My Info' page and validates the page's contents and functionality.")
     public void testNavigatingToMyinfoPageAndValidatingPage() {

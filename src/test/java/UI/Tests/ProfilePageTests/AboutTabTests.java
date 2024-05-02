@@ -1,15 +1,14 @@
 package UI.Tests.ProfilePageTests;
 
 import UI.Pages.ProfilePage.AboutTab;
-import UI.Tests.BaseTest;
+import UI.Tests.UiBaseTest;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 
-public class AboutTabTests extends BaseTest {
+public class AboutTabTests extends UiBaseTest {
     private final String[] expectedTexts = {
             "Company Name: ", "OrangeHRM", "Version:", "OrangeHRM OS 5.6.1 ",
             "Active Employees: ", "90", "Employees Terminated: ", "0"

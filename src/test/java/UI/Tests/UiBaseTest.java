@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 
-public class BaseTest {
+public class UiBaseTest {
 
     public static WebDriver driver;
     public static Properties properties;

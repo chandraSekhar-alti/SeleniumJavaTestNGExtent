@@ -1,6 +1,6 @@
 package UI.Pages.HomePage;
 
-import UI.Tests.BaseTest;
+import UI.Tests.UiBaseTest;
 import Utils.BrowserActions;
 import Utils.UI;
 import org.openqa.selenium.*;
@@ -9,7 +9,7 @@ import org.testng.Assert;
 
 import java.util.List;
 
-import static UI.Tests.BaseTest.properties;
+import static UI.Tests.UiBaseTest.properties;
 
 public class MyInfoPage {
     public static WebDriver driver;
@@ -51,7 +51,7 @@ public class MyInfoPage {
 
     public boolean verifyingMyInfoPageURL() {
         boolean valueToReturn = false;
-        BaseTest.loadProperties();
+        UiBaseTest.loadProperties();
         String MYINFO_URL = properties.getProperty("MyInfoPageURL");
 
         if (BrowserActions.isPageURL(MYINFO_URL)) {

@@ -1,7 +1,7 @@
 package Utils;
 
 import java.util.logging.Logger;
-import static UI.Tests.BaseTest.driver;
+import static UI.Tests.UiBaseTest.driver;
 public class BrowserActions {
 
 

@@ -2,14 +2,14 @@
   "posts": [
     {
       "id": 1,
-      "postId": "01",
-      "title": "The Importance of Code Quality",
-      "views": 100
+      "postId": "08",
+      "title": "Updated content by PUT method",
+      "views": "200"
     },
     {
       "id": 2,
       "postId": "02",
-      "title": "Understanding REST APIs",
+      "title": "Updated title by the Patch method",
       "views": 200
     },
     {
@@ -61,64 +61,42 @@
       "views": 450
     },
     {
-      "id": 1,
-      "postId": "55",
-      "title": "sampleText",
-      "views": 500
-    },
-    {
-      "id": 16,
-      "postId": "55",
-      "title": "sampleText",
-      "views": 500
-    },
-    {
-      "id": 16,
-      "postId": "55",
-      "title": "sampleText",
-      "views": 500
-    },
-    {
-      "id": 16,
-      "postId": "55",
-      "title": "sampleText",
-      "views": 500
-    },
-    {
       "id": 20,
-      "postId": "55",
-      "title": "sampleText",
-      "views": 500
+      "postId": "500",
+      "title": "Post data successfully done !!!!",
+      "views": 190
     },
     {
-      "id": 20,
-      "postId": "545",
-      "title": "let rock it !!!!",
-      "views": 150
+      "postID": "500",
+      "id": 21
     },
     {
-      "id": 20,
-      "postId": "545",
-      "title": "let rock it !!!!",
-      "views": 150
+      "title": "Post data successfully done By the second method!!!!",
+      "id": 22
     },
     {
-      "id": 20,
-      "postId": "545",
-      "title": "let rock it !!!!",
-      "views": 150
+      "postID": "500",
+      "title": "Post data successfully done By the second method!!!!",
+      "views": "200",
+      "id": 23
     },
     {
-      "id": 20,
-      "postId": "545",
-      "title": "let rock it !!!!",
-      "views": 150
+      "postID": "500",
+      "title": "Post data successfully done by the second method!!!!",
+      "views": 200,
+      "id": 24
     },
     {
-      "id": 20,
-      "postId": "545",
-      "title": "let rock it !!!!",
-      "views": 150
+      "id": 40,
+      "postId": "500",
+      "title": "Post data successfully done!!!!",
+      "views": 190
+    },
+    {
+      "postId": "500",
+      "title": "Post data successfully done!!!!",
+      "views": 190,
+      "id": 41
     }
   ],
   "comments": [
