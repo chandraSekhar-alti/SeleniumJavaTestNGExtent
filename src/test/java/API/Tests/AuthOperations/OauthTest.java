@@ -5,7 +5,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
 
-public class TweeterOauthTest {
+public class OauthTest {
 
     private static final String CLIENT_ID = "AVBLq2GKC37slzUEtx8xAH_CcS-vlpjRH8OASvvx5WaglArqMLTOonYBsAkhhEAiyV722sHEe4IoO_91";
     private static final String CLIENT_SECRET = "EA31Q2bo7emgRV-JKB9uzi6wQIwUKNhD5Rj6ZBMehjj4a7m2bbZVS3r-tM-LycTWHk57jNb5u_ImmntR";
