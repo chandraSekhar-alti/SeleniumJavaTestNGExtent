@@ -58,13 +58,6 @@ public class UI {
         wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 
-    /**
-     * Checks whether the given WebElement is clickable.
-     *
-     * @param driver  the WebDriver instance.
-     * @param locator the locator of the element to check.
-     * @return true if the element is clickable (visible and enabled), false otherwise.
-     */
     public static boolean isElementClickable(By locator) {
         try {
             WebElement element = driver.findElement(locator);
@@ -311,14 +304,6 @@ public class UI {
         driver.switchTo().frame(index);
     }
 
-    /**
-     * Switches the context to an iframe by its name or ID.
-     *
-     * @param nameOrId The name or ID of the iframe to switch to.
-     */
-    public static void switchToFrame(String nameOrId) {
-        driver.switchTo().frame(nameOrId);
-    }
 
     /**
      * Switches the context to an iframe using a web element.
@@ -336,11 +321,7 @@ public class UI {
         driver.switchTo().defaultContent();
     }
 
-    /**
-     * Puts the current thread to sleep for the specified number of seconds.
-     *
-     * @param time The number of milliseconds to sleep.
-     */
+
     public static void sleep(long timeInMilliSeconds) {
         try {
             Thread.sleep(timeInMilliSeconds);
