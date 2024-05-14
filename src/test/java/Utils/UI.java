@@ -60,7 +60,6 @@ public class UI {
     /**
      * Checks whether the given WebElement is clickable.
      *
-     * @param driver  the WebDriver instance.
      * @param locator the locator of the element to check.
      * @return true if the element is clickable (visible and enabled), false otherwise.
      */
@@ -338,7 +337,7 @@ public class UI {
     /**
      * Puts the current thread to sleep for the specified number of seconds.
      *
-     * @param time The number of milliseconds to sleep.
+     * @param timeInMilliSeconds The number of milliseconds to sleep.
      */
     public static void sleep(long timeInMilliSeconds) {
         try {
