@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="API-Test-Suites">
+    <test name="API tests">
+        <classes>
+            <class name="API.Tests.CrudOperations.DELETERequestsTest"></class>
+            <class name="API.Tests.CrudOperations.GETRequestsTest"></class>
+            <class name="API.Tests.CrudOperations.POSTRequestsTest"></class>
+            <class name="API.Tests.CrudOperations.PUTRequestsTest"></class>
+            <class name="API.Tests.AuthOperations.JWTTokenTest"></class>
+            <class name="API.Tests.AuthOperations.BasicAuthTest"></class>
+            <class name="API.Tests.AuthOperations.BearerTokenTest"></class>
+            <class name="API.Tests.AuthOperations.OauthTest"></class>
+
+
+        </classes>
+    </test>
+</suite>
