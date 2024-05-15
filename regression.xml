@@ -7,8 +7,8 @@
     <test name="RegressionTests">
         <classes>
             <class name="UI.Tests.ProfilePageTests.AboutTabTests" />
-<!--            <class name="UI.Tests.HomePageTests.HomePageLeftPanelTest" />-->
-<!--            <class name="UI.Tests.HomePageTests.MyInfoTest"/>-->
+            <class name="UI.Tests.HomePageTests.HomePageLeftPanelTest" />
+            <class name="UI.Tests.HomePageTests.MyInfoTest"/>
         </classes>
     </test>
 </suite>
