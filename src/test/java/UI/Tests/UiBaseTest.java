@@ -3,7 +3,12 @@ package UI.Tests;
 import Utils.BrowserActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Allure;
+import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestResult;
@@ -13,17 +18,22 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import Utils.UI;
 
+import org.apache.logging.log4j.Logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Properties;
 
+
 public class UiBaseTest {
+
 
     public static WebDriver driver;
     public static Properties properties;
     protected static Map<String, Map<String, String>> environmentConfig;
+    private static final Logger logger = LogManager.getLogger(UiBaseTest.class);
 
     @BeforeMethod
     @Parameters("environment")
@@ -51,13 +61,38 @@ public class UiBaseTest {
     }
 
     @AfterMethod
-    public void tearDown() {
-        // Close the browser and clean up the driver instance
+    public static synchronized void tearDown(ITestResult result) throws IOException {
+
+        logger.info("updating results of test script "+ result.getName() + "to report :: update test status");
+
+        if (result.getStatus() == ITestResult.FAILURE){
+            File screenshot = captureScreenshot(driver, result.getName());
+            Allure.addAttachment("page screenshot",FileUtils.openInputStream(screenshot));
+
+        }
+
         if (driver != null) {
             BrowserActions.quitBrowser();
-            driver = null; // Set driver to null for cleanup
+            driver = null;
         }
     }
+
+    private static File captureScreenshot(WebDriver driver, String testName){
+       logger.info("Capturing the screenshot :: take screenshot");
+       String screenshotPath = null;
+        TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
+        File src = takesScreenshot.getScreenshotAs(OutputType.FILE);
+        try{
+            screenshotPath = System.getProperty("user.dir") +"\\screenshots" + testName +"_screenshot.png";
+            logger.info("screenshot saved at :- "+screenshotPath);
+            FileUtils.copyFile(src, new File(screenshotPath));
+        } catch (IOException e) {
+            logger.error("Filed to capture screenshot :: taken screenshot" + e);
+        }
+        return src;
+    }
+
+
 
     protected void loginUsingEnvironment(String environment) {
         // Retrieve username and password from the environment configuration

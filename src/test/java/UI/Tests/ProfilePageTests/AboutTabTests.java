@@ -3,6 +3,7 @@ package UI.Tests.ProfilePageTests;
 import UI.Pages.ProfilePage.AboutTab;
 import UI.Tests.UiBaseTest;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
