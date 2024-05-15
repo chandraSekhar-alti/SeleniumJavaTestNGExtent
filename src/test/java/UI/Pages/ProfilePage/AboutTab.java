@@ -32,7 +32,8 @@ public class AboutTab {
 
     public boolean validatingAboutPopUpVisibility(){
         UI.waitForElement(aboutPopup);
-        return UI.isElementDisplayed(aboutPopup);
+//        return UI.isElementDisplayed(aboutPopup);
+        return false;
     }
 
     public boolean validatingAboutPopUpHeader(){

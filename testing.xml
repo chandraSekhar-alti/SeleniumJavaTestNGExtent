@@ -5,8 +5,8 @@
     <!-- Add your test groups, classes, etc. here -->
     <test name="RegressionTests">
         <classes>
-            <class name="Tests.ProfilePageTests.AboutTabTests" />
-            <class name="Tests.HomePageTests.HomePageLeftPanelTest" />
+            <class name="UI.Tests.ProfilePageTests.AboutTabTests" />
+            <class name="UI.Tests.HomePageTests.HomePageLeftPanelTest" />
         </classes>
     </test>
 </suite>
