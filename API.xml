@@ -1,22 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="API-Test-Suites">
+<suite name="API-Test-Suites" time-out="300000" verbose="2" >
     <listeners>
         <listener class-name="io.qameta.allure.testng.AllureTestNg" />
     </listeners>
-    <test name="API tests">
+    <test name="API tests" parallel="true" thread-count="4">
         <classes>
+            <class name="API.Tests.CrudOperations.GETRequestsTest">
+                <methods>
+                    <include name="testGetRequest"/>
+                    <include name="testGetRequestAlternateApproach"/>
+                    <include name="testGetRequestWithQueryParam"/>
+                </methods>
+            </class>
+
+            <class name="API.Tests.CrudOperations.POSTRequestsTest">
+                <methods>
+                    <include name="testCreateEntity"/>
+                    <include name="testPostRequestAlternateApproach"/>
+                </methods>
+            </class>
+
+            <class name="API.Tests.CrudOperations.PUTRequestsTest">
+                <methods>
+                    <include name="testPutRequest"/>
+                    <include name="testPatchRequest"/>
+                </methods>
+            </class>
+
             <class name="API.Tests.CrudOperations.DELETERequestsTest" />
-            <class name="API.Tests.CrudOperations.GETRequestsTest"/>
-            <class name="API.Tests.CrudOperations.POSTRequestsTest"/>
-            <class name="API.Tests.CrudOperations.PUTRequestsTest"/>
-            <class name="API.Tests.AuthOperations.JWTTokenTest"/>
-            <class name="API.Tests.AuthOperations.BasicAuthTest"/>
-            <class name="API.Tests.AuthOperations.BearerTokenTest"/>
-            <class name="API.Tests.AuthOperations.OauthTest"/>
 
+            <class name="API.Tests.AuthOperations.JWTTokenTest">
+                <methods>
+                    <include name="testGenerateJWTToken"/>
+                </methods>
+            </class>
 
+            <class name="API.Tests.AuthOperations.BasicAuthTest">
+                <methods>
+                    <include name="testBasicAuthentication"/>
+                </methods>
+            </class>
+
+            <class name="API.Tests.AuthOperations.BearerTokenTest">
+                <methods>
+                    <include name="testValidateBearerToken"/>
+                </methods>
+            </class>
+
+            <class name="API.Tests.AuthOperations.OauthTest">
+                <methods>
+                    <include name="testGetPayPallInvoiceTemplatesList"/>
+                    <include name="testGetPayPallInvoiceTemplatesListAlternateApproach"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

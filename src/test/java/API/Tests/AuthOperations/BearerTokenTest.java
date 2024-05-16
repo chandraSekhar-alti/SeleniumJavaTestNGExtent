@@ -18,7 +18,7 @@ public class BearerTokenTest {
 
 
     @Test(description = "Tests the Bearer token authentication with a POST request to create a new user", priority = 1)
-    public void testBearerTokenValidation(){
+    public void testValidateBearerToken(){
         RequestSpecification requestSpecification = RestAssured.given();
 
         requestSpecification.baseUri(BASE_URL);
@@ -40,8 +40,8 @@ public class BearerTokenTest {
         Response response = requestSpecification.post();
 
         Assert.assertEquals(response.statusCode(), 201, "Expected status code 201 but got " + response.statusCode());
-        System.out.println("response status line " + response.statusLine());
-        System.out.println("response body "+ response.getBody().asPrettyString());
+//        System.out.println("response status line " + response.statusLine());
+//        System.out.println("response body "+ response.getBody().asPrettyString());
 
 
     }

@@ -1,13 +1,21 @@
 package API.Tests.CrudOperations;
 
-import API.Tests.ApiBaseTest;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class PUTRequestsTest extends ApiBaseTest {
+public class PUTRequestsTest{
+
+    @BeforeTest
+    public static void setup() {
+        RestAssured.baseURI = "http://localhost:3000/";
+    }
+
+
 //    The PUT request updates a resource but requires the full JSON payload.
 //    To send a PUT request in REST-assured, we use the put() method:
 
@@ -19,7 +27,7 @@ public class PUTRequestsTest extends ApiBaseTest {
               "views": "200"
             }""";
 
-    @Test(priority = 3,groups = {"smoke"})
+    @Test(priority = 0,groups = {"smoke"})
     public void testPutRequest(){
         Response response = given()
                 .header("Content-Type","application/json")
@@ -40,7 +48,7 @@ public class PUTRequestsTest extends ApiBaseTest {
 
     //PATCH Request
     //The PATCH request updates a resource but requires only the field(s) which is being updated in the payload:
-    @Test(priority = 3,groups = {"smoke"})
+    @Test(priority = 1,groups = {"smoke"})
     public void testPatchRequest(){
 
         String patchResponseBody = """

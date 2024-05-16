@@ -4,11 +4,38 @@
     <listeners>
         <listener class-name="io.qameta.allure.testng.AllureTestNg" />
     </listeners>
+
+    <parameter name="expectedText1" value="Company Name: "/>
+    <parameter name="expectedText2" value="OrangeHRM"/>
+    <parameter name="expectedText3" value="Version:"/>
+    <parameter name="expectedText4" value="OrangeHRM OS 5.6.1 "/>
+    <parameter name="expectedText5" value="Active Employees: "/>
+    <parameter name="expectedText6" value="90"/>
+    <parameter name="expectedText7" value="Employees Terminated: "/>
+    <parameter name="expectedText8" value="0"/>
+
+
     <test name="RegressionTests">
         <classes>
-            <class name="UI.Tests.ProfilePageTests.AboutTabTests" />
-            <class name="UI.Tests.HomePageTests.HomePageLeftPanelTest" />
-            <class name="UI.Tests.HomePageTests.MyInfoTest"/>
+            <class name="UI.Tests.ProfilePageTests.AboutTabTests">
+                <methods>
+                    <include name="testAboutTabValidation"/>
+                    <include name="testAboutTabValidationPart2"/>
+                </methods>
+            </class>
+
+            <class name="UI.Tests.HomePageTests.HomePageLeftPanelTest">
+                <methods>
+                    <include name="testHomepageValidation"/>
+                </methods>
+            </class>
+
+            <class name="UI.Tests.HomePageTests.MyInfoTest">
+                <methods>
+                    <include name="testNavigatingToMyInfoPageAndValidatingPage"/>
+                    <include name="testPersonalDetailsFormSubmission"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
