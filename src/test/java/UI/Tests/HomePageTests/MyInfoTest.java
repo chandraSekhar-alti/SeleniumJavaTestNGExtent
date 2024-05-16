@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class MyInfoTest extends UiBaseTest {
 
     @Test(priority = 1, groups = {"regression"}, description = "This test navigates to the 'My Info' page and validates the page's contents and functionality.")
-    public void testNavigatingToMyinfoPageAndValidatingPage() {
+    public void testNavigatingToMyInfoPageAndValidatingPage() {
         MyInfoPage myInfoPage = new MyInfoPage(driver);
         myInfoPage.navigatingToMyInfoTab();
         Assert.assertTrue(myInfoPage.verifyingMyInfoPageURL(), "URL validation fail");

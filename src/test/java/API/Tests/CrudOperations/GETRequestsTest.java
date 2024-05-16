@@ -1,19 +1,25 @@
 package API.Tests.CrudOperations;
 
-import API.Tests.ApiBaseTest;
+import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.IsEqual.equalTo;
 
-public class GETRequestsTest extends ApiBaseTest {
+public class GETRequestsTest {
 
-    @Test(priority = 1, groups = {"smoke"}, description = "Fetches the list of posts from the live server and validates the response.")
+    @BeforeTest
+    public static void setup() {
+        RestAssured.baseURI = "http://localhost:3000/";
+    }
+
+    @Test(priority = 0, groups = {"smoke"}, description = "Fetches the list of posts from the live server and validates the response.")
     // Perform a GET request to fetch posts and validate the response
-    public void testGetRequestTypeOne() {
+    public void testGetRequest() {
         Response response = given()
                 .contentType(ContentType.JSON)
                 .when()
@@ -26,22 +32,22 @@ public class GETRequestsTest extends ApiBaseTest {
 
         // Validate the status code and the second post's title
         Assert.assertEquals(response.statusCode(), 200);
-        Assert.assertEquals(response.jsonPath().getString("title[1]"), "Understanding REST APIs");
+        Assert.assertEquals(response.jsonPath().getString("title[1]"), "Updated title by the Patch method");
     }
 
-    @Test(priority = 1, groups = {"smoke"}, description = "Fetches the list of posts from the live server and validates the second post's title.")
+    @Test(priority = 0, groups = {"smoke"}, description = "Fetches the list of posts from the live server and validates the second post's title.")
     // Perform a GET request and validate the status code and response content
-    public void testGetRequestTypeTwo() {
+    public void testGetRequestAlternateApproach() {
         given()
                 .contentType(ContentType.JSON)
                 .when()
                 .get("posts")
                 .then()
                 .statusCode(200)
-                .body("title[1]", equalTo("Understanding REST APIs"));
+                .body("title[1]", equalTo("Updated title by the Patch method"));
     }
 
-    @Test(priority = 2, groups = {"smoke"}, description = "Fetches data from the comments endpoint using query parameters and validates the response.")
+    @Test(priority = 0, groups = {"smoke"}, description = "Fetches data from the comments endpoint using query parameters and validates the response.")
     // Perform a GET request with query parameters and validate the response
     public void testGetRequestWithQueryParam() {
         Response response = given()
