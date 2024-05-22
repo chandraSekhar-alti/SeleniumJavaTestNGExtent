@@ -16,6 +16,8 @@
 
 
     <test name="RegressionTests">
+<!--        <parameter name="environment" value="SMOKE"/>-->
+        <parameter name="environment" value="regression"/>
         <classes>
             <class name="UI.Tests.ProfilePageTests.AboutTabTests">
                 <methods>

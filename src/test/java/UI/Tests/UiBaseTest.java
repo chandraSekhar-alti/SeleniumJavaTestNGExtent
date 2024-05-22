@@ -39,6 +39,7 @@ public class UiBaseTest {
     @Parameters("environment")
     public void setUp(ITestResult result, @Optional("regression") String environment) {
         // Load configuration settings for the specified environment
+        String env = System.getProperty("env", environment);
         loadEnvironmentConfig(environment);
 
         // Set up WebDriver and launch the Chrome browser
@@ -83,11 +84,11 @@ public class UiBaseTest {
         TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
         File src = takesScreenshot.getScreenshotAs(OutputType.FILE);
         try{
-            screenshotPath = System.getProperty("user.dir") +"\\screenshots" + testName +"_screenshot.png";
-            logger.info("screenshot saved at :- "+screenshotPath);
+            screenshotPath = System.getProperty("user.dir") +"\\src\\test\\resources\\Allure_Failure_Screenshot\\" + testName +"_screenshot.png";
+            logger.info("screenshot saved at :- {}", screenshotPath);
             FileUtils.copyFile(src, new File(screenshotPath));
         } catch (IOException e) {
-            logger.error("Filed to capture screenshot :: taken screenshot" + e);
+            logger.error(e);
         }
         return src;
     }
@@ -111,6 +112,7 @@ public class UiBaseTest {
         if (environment == null || environment.isEmpty()) {
             environment = "regression";
         }
+        System.out.println("Loading configuration for environment: " + environment);
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
