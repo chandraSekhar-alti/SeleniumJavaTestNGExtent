@@ -22,7 +22,8 @@
 		<maven.compiler.source>20</maven.compiler.source>
 		<aspectj.version>1.9.19</aspectj.version>
 		<allure.version>2.22.0</allure.version>
-		<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+		<suiteXmlFile>src/test/resources/test-suites/UI.xml</suiteXmlFile>
+<!--		<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
 	</properties>
 
 	<dependencies>
@@ -193,9 +194,9 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.2</version>
 				<configuration>
-					<suiteXmlFiles>
-						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
-					</suiteXmlFiles>
+<!--					<suiteXmlFiles>-->
+<!--						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
+<!--					</suiteXmlFiles>-->
 					<argLine>
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
 					</argLine>
