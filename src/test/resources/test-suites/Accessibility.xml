@@ -2,7 +2,12 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite name="AccessibilityTestSuite" verbose="1" parallel="false">
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg" />
+    </listeners>
+
     <test name="AccessibilityTests">
+        <parameter name="environment" value="regression"/>
         <classes>
             <class name="Accessibility.Tests.AccessibilityTest" />
             <class name="Accessibility.Tests.MyntraLoginAccessibilityTest" />

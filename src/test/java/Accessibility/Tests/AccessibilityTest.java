@@ -3,18 +3,12 @@ package Accessibility.Tests;
 
 import Accessibility.AccessibilityBaseTest;
 import Accessibility.Utils;
-import UI.Tests.UiBaseTest;
 import com.deque.html.axecore.results.Results;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.security.PublicKey;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
 
-import static Accessibility.Utils.*;
-import static Accessibility.Utils.properties;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 

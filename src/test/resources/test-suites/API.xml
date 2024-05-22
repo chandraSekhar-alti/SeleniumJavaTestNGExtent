@@ -6,6 +6,7 @@
         <listener class-name="io.qameta.allure.testng.AllureTestNg" />
     </listeners>
     <test name="API tests" parallel="true" thread-count="4">
+        <parameter name="environment" value="regression"/>
         <classes>
             <class name="API.Tests.CrudOperations.GETRequestsTest">
                 <methods>
