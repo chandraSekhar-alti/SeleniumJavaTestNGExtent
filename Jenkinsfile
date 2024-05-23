@@ -14,26 +14,26 @@ pipeline {
                     allure([
                         includeProperties: false,
                         jdk: '',
-                        results: [[path: 'target/allure-results']],
-                        report: [[path: 'target/allure-report']]
+                        results: [[path: 'allure-results']],
+                        report: [[path: 'allure-report']]
                     ])
                 }
             }
         }
     }
     post {
-        always {
-            archiveArtifacts artifacts: 'target/allure-report/**', allowEmptyArchive: true
-        }
-        success {
-            script {
-                allure([
-                    includeProperties: false,
-                    jdk: '',
-                    results: [[path: 'target/allure-results']],
-                    report: [[path: 'target/allure-report']]
-                ])
+            always {
+                archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
+            }
+            success {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        results: [[path: 'allure-results']],
+                        report: [[path: 'allure-report']]
+                    ])
+                }
             }
         }
-    }
 }
