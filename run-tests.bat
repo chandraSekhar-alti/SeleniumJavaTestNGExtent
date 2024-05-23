@@ -15,5 +15,8 @@ cd ..
 REM run the maven tests
 mvn clean test
 
-REM kill the json-server process
+REM Kill the json-server process
 taskkill /F /IM node.exe
+
+REM Ensure the allure-results directory exists
+if not exist "allure-results" mkdir "allure-results"
