@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        MAVEN_HOME = tool name: 'Maven 3.9.6', type: 'maven'
-        ALLURE_HOME = tool name: 'allure', type: 'ru.yandex.qatools.allure.jenkins.tools.AllureCommandlineInstallation'
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -13,11 +8,12 @@ pipeline {
             }
         }
 
-        stage('Build and Test') {
+        stage('Build') {
             steps {
                 script {
+                    def mvnHome = tool name: 'Maven 3.9.6', type: 'maven'
                     try {
-                        sh "${MAVEN_HOME}/bin/mvn clean test"
+                        sh "${mvnHome}/bin/mvn clean test"
                     } catch (Exception e) {
                         currentBuild.result = 'UNSTABLE'
                     }
@@ -28,7 +24,8 @@ pipeline {
         stage('Generate Allure Report') {
             steps {
                 script {
-                    sh "${ALLURE_HOME}/bin/allure generate target/allure-results --clean -o target/allure-report"
+                    def allureHome = tool name: 'allure', type: 'ru.yandex.qatools.allure.jenkins.tools.AllureCommandlineInstallation'
+                    sh "${allureHome}/bin/allure generate target/allure-results --clean -o target/allure-report"
                 }
             }
         }
@@ -36,21 +33,10 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'target/allure-results/**'
-            archiveArtifacts artifacts: 'target/allure-report/**'
-            publishHTML(target: [
-                reportName : 'Allure Report',
-                reportDir  : 'target/allure-report',
-                reportFiles: 'index.html',
-                alwaysLinkToLastBuild: true,
-                keepAll: true
-            ])
-        }
-        failure {
-            echo 'Build failed! Check the test results and fix the issues.'
-        }
-        unstable {
-            echo 'Build is unstable. Check the test results and fix the issues.'
+            script {
+                archiveArtifacts artifacts: 'target/allure-report/**'
+                allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
+            }
         }
     }
 }
