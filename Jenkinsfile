@@ -29,6 +29,15 @@ pipeline {
                 }
             }
         }
+
+        stage('Serve Allure Report') {
+            steps {
+                script {
+                    def allureHome = tool name: 'allure', type: 'ru.yandex.qatools.allure.jenkins.tools.AllureCommandlineInstallation'
+                    sh "${allureHome}/bin/allure serve target/allure-results"
+                }
+            }
+        }
     }
 
     post {
