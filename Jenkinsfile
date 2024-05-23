@@ -34,7 +34,7 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: 'target/allure-report/**'
-            allure includeProperties: false, jdk: '', results: [[path: 'target/allure-report']]
+            allure includeProperties: false, jdk: '', results: [[path: 'target/allure-results']]
         }
         failure {
             echo 'Build failed! Check the test results and fix the issues.'
