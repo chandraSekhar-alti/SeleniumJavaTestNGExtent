@@ -8,32 +8,18 @@ pipeline {
                 }
             }
         }
-        stage('Generate Allure Report') {
-            steps {
-                script {
-                    allure([
-                        includeProperties: false,
-                        jdk: '',
-                        results: [[path: 'allure-results']],
-                        report: [[path: 'allure-report']]
-                    ])
-                }
-            }
-        }
     }
     post {
-            always {
-                archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
+        always {
+            script {
+                allure([
+                    includeProperties: false,
+                    jdk: '',
+                    results: [[path: 'allure-results']],
+                    report: [[path: 'allure-report']]
+                ])
             }
-            success {
-                script {
-                    allure([
-                        includeProperties: false,
-                        jdk: '',
-                        results: [[path: 'allure-results']],
-                        report: [[path: 'allure-report']]
-                    ])
-                }
-            }
+            archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
         }
+    }
 }

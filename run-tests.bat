@@ -6,7 +6,7 @@ cd JSON-Server
 REM starts the json server in the background
 start npx json-server db.json
 
-REm give some times to server to start
+REM give some time to the server to start
 timeout /t 10 /nobreak
 
 REM navigate to the project root directory

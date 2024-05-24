@@ -5,7 +5,7 @@
     <test name="AccessibilityTests">
         <classes>
             <class name="Accessibility.Tests.AccessibilityTest" />
-            <class name="Accessibility.Tests.MyntraLoginAccessibilityTest" />
+            <class name="Accessibility.Tests.MantraLoginAccessibilityTest" />
         </classes>
     </test>
 </suite>
